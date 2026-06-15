@@ -1,0 +1,19 @@
+{
+  "name": "mvp",
+  "version": "0.0.1",
+  "description": "IP Lookup App ",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzaeltic/mvpip.git"
+  },
+  "author": "dzaeltic",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/dzaeltic/mvpip/issues"
+  },
+  "homepage": "https://github.com/dzaeltic/mvpip#readme"
+}
