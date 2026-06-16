@@ -27,7 +27,7 @@ const ipSchema = new Schema({
     name: String,
     country_code: String,
     domain: String,
-    type: String,
+    type: {type: String},
     rir: String
   },
   privacy: {
@@ -49,7 +49,7 @@ const ipSchema = new Schema({
     name: String,
     domain: String,
     country_code: String,
-    type: String
+    type: {type: String}
   },
   abuse: {
     address: String,

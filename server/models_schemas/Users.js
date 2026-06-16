@@ -5,7 +5,8 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    minLength: 5
+    minLength: 5,
+    unique: true
   },
   email: {
     type: String,
@@ -17,7 +18,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  searchHistory: [ipSchema]
+  searchHistory: {
+    type: [ipSchema],
+    default: []
+  }
 }, { timestamps: true });
 
 const user = model('user', userSchema);

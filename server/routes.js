@@ -5,7 +5,8 @@ const user = require('./controllers/userController');
 const watchList = require('./controllers/watchListController');
 
 router.route('/api/search')
-  .post(search.lookup);
+  .post(search.lookup)
+  .get(search.history)
 
 
 
