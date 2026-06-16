@@ -11,7 +11,7 @@ const lookup = async (req, res) => {
     const ipObject = response.data
     await user.updateOne(
       { username: 'dzaeltic' }, 
-      { $push: { searchHistory: ipObject } }
+      { $push: { searchHistory: { $each: [ipObject], $position: 0 } } }
     )
     res.status(201).json(ipObject);
   } catch (err) {
@@ -20,7 +20,7 @@ const lookup = async (req, res) => {
   }
 };
 
-const history = async (req, res) => {
+const getHistory = async (req, res) => {
   try {
     const history = await user.find({ username: 'dzaeltic'}, 'searchHistory');
     res.status(200).json(history);
@@ -30,5 +30,15 @@ const history = async (req, res) => {
   }
 };
 
+const deleteHistory = async (req, res) => {
+  try {
+    await user.updateOne({ username: 'dzaeltic' }, { searchHistory: [] });
+    res.sendStatus(200);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+}
 
-module.exports = { lookup, history };
+
+module.exports = { lookup, getHistory, deleteHistory };

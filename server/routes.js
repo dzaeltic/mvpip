@@ -6,7 +6,8 @@ const watchList = require('./controllers/watchListController');
 
 router.route('/api/search')
   .post(search.lookup)
-  .get(search.history)
+  .get(search.getHistory)
+  .delete(search.deleteHistory)
 
 
 
