@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "IP Lookup App ",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "dev": "npx webpack serve"
   },
   "repository": {
     "type": "git",
