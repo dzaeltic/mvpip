@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { ipSchema } = require('./ipSchema');
 
 const userSchema = new Schema({
   username: {
@@ -15,7 +16,8 @@ const userSchema = new Schema({
   passwordHash: {
     type: String,
     required: true
-  }
+  },
+  searchHistory: [ipSchema]
 }, { timestamps: true });
 
 const user = model('user', userSchema);
