@@ -1,5 +1,3 @@
-const express = require('express');
-const app = express();
 const { user } = require('../models_schemas/Users');
 const axios = require('axios');
 
