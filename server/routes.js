@@ -5,6 +5,7 @@ const user = require('./controllers/userController');
 // const watchList = require('./controllers/watchListController');
 
 router.route('/search')
+  .patch(search.addNote)
   .post(search.lookup)
   .get(search.getHistory)
   .delete(search.deleteHistory);

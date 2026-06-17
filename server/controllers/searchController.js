@@ -38,5 +38,30 @@ const deleteHistory = async (req, res) => {
   }
 }
 
+const addNote = async (req, res) => {
+  try {
+    const note = req.body.note;
+    const _id = req.body._id;
+    const ip = await user.findOneAndUpdate(
+      {
+        username: 'dzaeltic',
+        'searchHistory._id': _id
+      },
+      {
+        $set: {
+          "searchHistory.$.note": note
+        }
+      },
+      {
+        returnDocument: 'after'
+      }
+    )
+    res.status(200).json(ip.searchHistory.id(_id));
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+}
 
-module.exports = { lookup, getHistory, deleteHistory };
+
+module.exports = { lookup, getHistory, deleteHistory, addNote };
