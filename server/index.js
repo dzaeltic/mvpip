@@ -10,7 +10,7 @@ db.connect();
 
 app.use(cors());
 app.use(express.json())
-app.use(router);
+app.use('/api', router);
 
 app.listen(port, () => {
   console.log(`server listening on port ${port}`)

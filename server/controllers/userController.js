@@ -6,7 +6,7 @@ const signup = async (req, res) => {
     const email = req.body.email;
     const passwordHash = req.body.password;
 
-    await user.insertOne({
+    await user.create({
       username,
       email,
       passwordHash
@@ -21,7 +21,7 @@ const signup = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    user.deleteOne({ username: req.body.username });
+    await user.deleteOne({ username: req.body.username });
     res.sendStatus(200);
   } catch (err) {
     console.error(err);
