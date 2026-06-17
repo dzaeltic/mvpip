@@ -11,29 +11,29 @@ function App() {
   const [display, setDisplay] = useState(null);
   const [history, setHistory] = useState([]);
 
-  useEffect(() => {
-    const fetchHistory = async () => {
-      try {
-        const hist = await axios({
-          method: 'get',
-          url: 'http://localhost:8080/api/search'
-        });
-        setHistory(hist.data[0].searchHistory);
-      } catch (err) {
-        console.error(err);
-      } 
-    };
-    fetchHistory();
-  }, []);
+  const fetchHistory = async () => {
+    try {
+      const hist = await axios({
+        method: 'get',
+        url: 'http://localhost:8080/api/search'
+      });
+      setHistory(hist.data[0].searchHistory);
+    } catch (err) {
+      console.error(err);
+    } 
+  };
+
+  useEffect(() => { fetchHistory() }, []);
 
 
   const addNote = async (note, _id) => {
     try {
-      axios({
+      await axios({
         method: 'patch',
         url: 'http://localhost:8080/api/search',
         data: {"note": `${note}`, "_id": `${_id}`}
       })
+      fetchHistory();
     } catch (err) {
       console.error(err);
     }
@@ -53,12 +53,28 @@ function App() {
     }
   }
 
+  const deleteHistory = async () => {
+    try {
+      axios({
+        method: 'delete',
+        url: 'http://localhost:8080/api/search'
+      })
+      fetchHistory();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const changeDisplay = (ip) => {
+    setDisplay(ip);
+  }
 
 
   return (
       <div>
+        <button onClick={deleteHistory}>DELETE SEARCH HISTORY (NOT RECOVERABLE :D)</button>
         <aside>
-          <HistoryList history={history} addNote={addNote} />
+          <HistoryList history={history} addNote={addNote} changeDisplay={changeDisplay} />
         </aside>
         <Search handleSearch={handleSearch} />
         <Display display={display}/>

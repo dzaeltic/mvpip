@@ -1,6 +1,6 @@
 import React from "react";
 
-function HistoryListItem ({ search, addNote }) {
+function HistoryListItem ({ search, addNote, changeDisplay }) {
 
   const handleClick = () => {
     const note = prompt(
@@ -10,13 +10,17 @@ function HistoryListItem ({ search, addNote }) {
     addNote(note, search._id);
   }
 
+  const updateDisplay = () => {
+    changeDisplay(search);
+  }
+
   return (
     <li>
-      <p>
-        {search.ip}
+      <div onClick={updateDisplay}>
+        {search.ip} 
         {search.note && <p>{search.note}</p>}
-      </p>
-      <button onClick={handleClick}>ADD NOTE</button>
+      </div>
+        <button onClick={handleClick}>ADD NOTE</button>
     </li>
   )
 }
