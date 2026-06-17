@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "test": "npm test",
-    "dev": "npx webpack serve"
+    "dev": "webpack --watch"
   },
   "repository": {
     "type": "git",
